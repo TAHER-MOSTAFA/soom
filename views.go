@@ -51,3 +51,13 @@ func room_ws(c *gin.Context) {
 		}
 	}
 }
+
+func create_answer(c *gin.Context) {
+	var user User
+	err := c.ShouldBindJSON(&user)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, user)
+}

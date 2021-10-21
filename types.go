@@ -1,8 +1,8 @@
 package main
 
 type User struct {
-	Name  string
-	Offer string
+	Name  string `json:"name"`
+	Offer string `json:"offer"`
 }
 
 type Room struct {

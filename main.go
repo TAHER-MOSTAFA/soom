@@ -18,6 +18,7 @@ func main() {
 	r.GET("/", home)
 	r.GET("/create/", create)
 	r.GET("/:room/", room)
+	r.POST("/:room/", create_answer)
 
 	r.GET("/:room/ws/", room_ws)
 
