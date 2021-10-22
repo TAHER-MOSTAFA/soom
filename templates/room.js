@@ -14,19 +14,19 @@ pc.onicecandidate = event => {
     if (event.candidate === null) {
         var name = document.getElementById("name").value
         var offer =  btoa(JSON.stringify(pc.localDescription))
-       
-        answer = fetch(location.pathname, {
+      
+        fetch(location.pathname, {
             method: "POST", 
-            body: JSON.stringify({name : name, offer:offer})
-          }).then(res => {
-            res.json().then(data => {return data});
-          });
-        
-        try{
-        pc.setRemoteDescription(new RTCSessionDescription(JSON.parse(atob(data["answer"]))))
-        } catch (e) {
-            alert(e)
-        }
+            body: JSON.stringify({"name" : name, "offer" : offer})
+          }).then(res => {return res.json()})
+            .then(data => {
+              console.log(data.answer)
+              try{
+              pc.setRemoteDescription(new RTCSessionDescription(JSON.parse(atob(data.answer))))
+              } catch (e) {
+                  alert(e)
+              }
+            }).catch(console.error);
     }    
 }
 

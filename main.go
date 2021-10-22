@@ -16,11 +16,11 @@ func main() {
 	r.Static("/static", "./templates/")
 
 	r.GET("/", home)
-	r.GET("/create/", create)
-	r.GET("/:room/", room)
-	r.POST("/:room/", create_answer)
+	r.GET("/create", create)
+	r.POST("/:room", create_answer)
+	r.GET("/:room", room)
 
-	r.GET("/:room/ws/", room_ws)
+	r.GET("/:room/ws", room_ws)
 
 	r.Run()
 
